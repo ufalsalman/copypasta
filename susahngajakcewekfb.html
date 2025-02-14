@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>susah ngajak cewek fb generator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>susah ngajak cewek fb generator</h1>
+    <input type="text" id="obyek" placeholder="Masukkan obyek..." onkeypress="handleKeyPress(event)">
+    <button onclick="generateCopypasta()">Bikin</button>
+    <button id="copyButton" onclick="copyToClipboard()">Salin</button>
+    <p id="output"></p>
+    <hr>
+    <p>lainnya: <a href="/udangkejugacoan.html" >udang keju gacoan</a></p>
+    <hr>
+    <p><a href="https://ufal.my.id">orang</a> yang ngurus situs ini<br>
+    ayo nonton <a href="https://www.youtube.com/playlist?list=PLPanbgyToztaAiURdrX01mhS8_wSFCkFs">ave mujica<?</p>
+
+    <script>
+        function generateCopypasta() {
+            let obyek = document.getElementById("obyek").value;
+            if (!obyek) {
+                document.getElementById("output").textContent = "Masukkan obyek terlebih dahulu!";
+                document.getElementById("copyButton").style.display = "none";
+                return;
+            }
+            let template = `susah bgt ngajak cwek fb meet, ga pernah berhasil, kadang baru bilang "hi" aja udah dituduh mau ${obyek} njir, sib nasib`;
+            document.getElementById("output").textContent = template;
+            document.getElementById("copyButton").style.display = "inline-block";
+        }
+        
+        function copyToClipboard() {
+            let text = document.getElementById("output").textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Teks berhasil disalin!");
+            }).catch(err => {
+                alert("Gagal menyalin teks");
+            });
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                generateCopypasta();
+            }
+        }
+    </script>
+</body>
+</html>
