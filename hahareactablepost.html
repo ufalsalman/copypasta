@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hahareact-table post generator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>hahareact-table post generator</h1>
+    <input type="text" id="obyek1" placeholder="Masukkan nama barang..." onkeypress="handleKeyPress(event)">
+    <input type="text" id="obyek2" placeholder="Masukkan kegiatan..." onkeypress="handleKeyPress(event)">
+    <input type="text" id="obyek3" placeholder="Masukkan nama tempat..." onkeypress="handleKeyPress(event)">
+    <button onclick="generateCopypasta()">Bikin</button>
+    <button id="copyButton" onclick="copyToClipboard()" style="display:none;">Salin</button>
+    <p id="output"></p>
+    <p><i>segala bentuk salah dalam grammar merupakan kesengajaan untuk mengikuti contoh dari copypasta yang asli</i></p>
+    <hr>
+    <p>balik ke <a href="/">beranda</a></p>
+    <hr>
+    <p><a href="https://ufal.my.id">orang</a> yang ngurus situs ini<br>
+    ayo nonton <a href="https://www.youtube.com/playlist?list=PLPanbgyToztaAiURdrX01mhS8_wSFCkFs">ave mujica<?</p>
+    
+    <script>
+        function generateCopypasta() {
+            let obyek1 = document.getElementById("obyek1").value;
+            let obyek2 = document.getElementById("obyek2").value;
+            let obyek3 = document.getElementById("obyek3").value;
+            
+            if (!obyek1 || !obyek2 || !obyek3) {
+                document.getElementById("output").textContent = "Masukkan semua obyek terlebih dahulu!";
+                document.getElementById("copyButton").style.display = "none";
+                return;
+            }
+            
+            let template = `**HAHAREACT-ABLE POST**<br><br>In the end, it’s always better to cry with my ${obyek1}, <br>a reward from hard work, than be stuck ${obyek2} in ${obyek3}.<br>-<br>..<br>..<br>..<br>Well, that was my previous life. You can do even better than me.`;
+            
+            document.getElementById("output").innerHTML = template;
+            document.getElementById("copyButton").style.display = "inline-block";
+        }
+        
+        function copyToClipboard() {
+            let text = document.getElementById("output").innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Teks berhasil disalin!");
+            }).catch(err => {
+                alert("Gagal menyalin teks");
+            });
+        }
+        
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                generateCopypasta();
+            }
+        }
+    </script>
+</body>
+</html>
