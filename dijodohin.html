@@ -9,8 +9,12 @@
 <body>
     <h1>dijodohin generator</h1>
     <input type="text" id="obyek" placeholder="Masukkan nama orang..." onkeypress="handleKeyPress(event)">
+    <br>
+    <label><input type="radio" name="gender" value="cewe" checked>Cewe</label>
+    <label><input type="radio" name="gender" value="cowo">Cowo</label>
+    <br>
     <button onclick="generateCopypasta()">Bikin</button>
-    <button id="copyButton" onclick="copyToClipboard()">Salin</button>
+    <button id="copyButton" onclick="copyToClipboard()" style="display: none;">Salin</button>
     <p id="output"></p>
     <hr>
     <p>balik ke <a href="/">beranda</a></p>
@@ -22,18 +26,21 @@
         function generateCopypasta() {
         let obyek = document.getElementById("obyek").value.trim();
         if (!obyek) {
-            document.getElementById("output").textContent = "Masukkan obyek terlebih dahulu!";
+            document.getElementById("output").innerHTML = "Masukkan obyek terlebih dahulu!";
             document.getElementById("copyButton").style.display = "none";
             return;
         }
 
+        let gender = document.querySelector('input[name="gender"]:checked').value;
+
+        let deskripsi = gender === "cewe" ? "cantik banget. Beda dari cewe lain." : "ganteng banget. Beda dari cowo lain.";
+
         let firstChar = obyek.charAt(0);
         let modifiedObyek = firstChar + "-" + obyek;
 
-        let template = `Inilah kenapa aku paling males sama perjodohan.. Tahun baru kemarin aku ikut acara perjodohan mamaku sama temen nya. Aku mau dijodohin sama anak temennya, aku males banget. Aku sampe sengaja pake baju gembel pas dipertemuan itu, mak gw sampe kaget wkwk.\n\nTapi pas disana aku malah lebih kaget liat calonnya "${modifiedObyek}?!". Aku yang awalnya males banget, jadi makin shock pas liat calonnya. Seriusan ini aku ga nyangka sama sekali, udah sengaja pake baju gembel biar acara ini gagal, eh malah plot twist. Aku liat dia kaya terpana, terus dia bilang "Kamu unik ya, pura-pura gembel padahal aslinya cantik banget. Beda dari cewe lain. kita nikah ya."\n\nAnjir, jantung aku langsung deg-degan. Ini beneran? Aku malu tapi bahagia juga, ga nyangka malah dapet momen kaya gini. Akhirnya tanpa pikir panjang, Aku langsung setuju dan bilang ke ortu buat ajukan pernikahan besok biar aku bisa cepet-cepet jadi pasangannya ${obyek} 🥰💖`;
+        let template = `Inilah kenapa aku paling males sama perjodohan.. Tahun baru kemarin aku ikut acara perjodohan mamaku sama temen nya. Aku mau dijodohin sama anak temennya, aku males banget. Aku sampe sengaja pake baju gembel pas dipertemuan itu, mak gw sampe kaget wkwk.\n\nTapi pas disana aku malah lebih kaget liat calonnya "${modifiedObyek}?!". Aku yang awalnya males banget, jadi makin shock pas liat calonnya. Seriusan ini aku ga nyangka sama sekali, udah sengaja pake baju gembel biar acara ini gagal, eh malah plot twist. Aku liat dia kaya terpana, terus dia bilang "Kamu unik ya, pura-pura gembel padahal aslinya ${deskripsi} kita nikah ya."\n\nAnjir, jantung aku langsung deg-degan. Ini beneran? Aku malu tapi bahagia juga, ga nyangka malah dapet momen kaya gini. Akhirnya tanpa pikir panjang, Aku langsung setuju dan bilang ke ortu buat ajukan pernikahan besok biar aku bisa cepet-cepet jadi pasangannya ${obyek} 🥰💖`;
 
         document.getElementById("output").innerHTML = template.replace(/\n/g, "<br>");
-
         document.getElementById("copyButton").style.display = "inline-block";
     }
 
