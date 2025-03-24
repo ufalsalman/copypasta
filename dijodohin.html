@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dijodohin generator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>dijodohin generator</h1>
+    <input type="text" id="obyek" placeholder="Masukkan nama orang..." onkeypress="handleKeyPress(event)">
+    <button onclick="generateCopypasta()">Bikin</button>
+    <button id="copyButton" onclick="copyToClipboard()">Salin</button>
+    <p id="output"></p>
+    <hr>
+    <p>dapet dari <a href="https://www.facebook.com/share/p/15gDPFNyBV/">sini</a></p>
+    <p>balik ke <a href="/">beranda</a></p>
+    <hr>
+    <p><a href="https://ufal.my.id">orang</a> yang ngurus situs ini<br>
+    ayo nonton <a href="https://www.youtube.com/playlist?list=PLPanbgyToztaAiURdrX01mhS8_wSFCkFs">ave mujica<?</p>
+
+    <script>
+        function generateCopypasta() {
+        let obyek = document.getElementById("obyek").value.trim();
+        if (!obyek) {
+            document.getElementById("output").textContent = "Masukkan obyek terlebih dahulu!";
+            document.getElementById("copyButton").style.display = "none";
+            return;
+        }
+
+        // Mengulang huruf pertama untuk (1)
+        let firstChar = obyek.charAt(0);
+        let modifiedObyek = firstChar + "-" + obyek;
+
+        let template = `Inilah kenapa aku paling males sama perjodohan.. Tahun baru kemarin aku ikut acara perjodohan mamaku sama temen nya. Aku mau dijodohin sama anak temennya, aku males banget. Aku sampe sengaja pake baju gembel pas dipertemuan itu, mak gw sampe kaget wkwk.\n\nTapi pas disana aku malah lebih kaget liat calonnya "${modifiedObyek}?!". Aku yang awalnya males banget, jadi makin shock pas liat calonnya. Seriusan ini aku ga nyangka sama sekali, udah sengaja pake baju gembel biar acara ini gagal, eh malah plot twist. Aku liat dia kaya terpana, terus dia bilang "Kamu unik ya, pura-pura gembel padahal aslinya cantik banget. Beda dari cewe lain. kita nikah ya."\n\nAnjir, jantung aku langsung deg-degan. Ini beneran? Aku malu tapi bahagia juga, ga nyangka malah dapet momen kaya gini. Akhirnya tanpa pikir panjang, Aku langsung setuju dan bilang ke ortu buat ajukan pernikahan besok biar aku bisa cepet-cepet jadi pasangannya ${obyek} 🥰💖`;
+
+        document.getElementById("output").innerHTML = template.replace(/\n/g, "<br>");
+
+        document.getElementById("copyButton").style.display = "inline-block";
+    }
+
+    function copyToClipboard() {
+        let text = document.getElementById("output").textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Teks berhasil disalin!");
+        }).catch(err => {
+            alert("Gagal menyalin teks");
+        });
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            generateCopypasta();
+        }
+    }
+    </script>
+</body>
+</html>
