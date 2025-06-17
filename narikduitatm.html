@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>narik duit di atm generator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>narik duit di atm generator</h1>
+    <input type="text" id="karakter" placeholder="Nama karakter..." onkeypress="handleKeyPress(event)">
+    <input type="text" id="seri" placeholder="Dari seri apa...">
+    <input type="text" id="rambut" placeholder="Warna rambutnya...">
+    <label><input type="radio" name="gender" value="istri" checked>Istri</label>
+    <label><input type="radio" name="gender" value="suami">Suami</label>
+    <button onclick="generateCopypasta()">Bikin</button>
+    <button id="copyButton" onclick="copyToClipboard()" style="display: none;">Salin</button>
+    <p id="output"></p>
+    <hr>
+    <p>balik ke <a href="/">beranda</a></p>
+    <hr>
+    <p><a href="https://ufal.my.id">orang</a> yang ngurus situs ini</p>
+
+    <script>
+        function generateCopypasta() {
+            let karakter = document.getElementById("karakter").value.trim();
+            let seri = document.getElementById("seri").value.trim();
+            let rambut = document.getElementById("rambut").value.trim();
+            let gender = document.querySelector('input[name="gender"]:checked').value;
+
+            if (!karakter || !seri || !rambut) {
+                document.getElementById("output").textContent = "Lengkapi semua isian dulu!";
+                document.getElementById("copyButton").style.display = "none";
+                return;
+            }
+
+            let pasangan = gender === "istri" ? "istri" : "suami";
+
+            let template = `Gua kan baru ambil duit tuh dari atm tu kan, lu tau nggak dibelakang gua tadi ada cewe pake jaket hoodie kacamata hitam sama masker hitam gitu. Nah dia ngeliat kartu atm gua gitu kan. "Wah itu ${karakter} dari ${seri} ya?", gua bales "Kamu tau darimana emang?". Dia senyum ke gua "Tahu dong", tiba-tiba dia ngelepas hoodienya, kacamata sama maskernya gitu kan, gua kaget ngeliat rambut ${rambut} dan senyuman khasnya itu. Dia bilang, "Aku ${karakter}, apa pendapatmu tentangku?" gitu kan. Gua bilang lah, "Aku cinta banget sama ${karakter}, itu udah kuanggap sebagai ${pasangan} sendiri" gitu. Dia peluk gua, "Sekarang aku ada disini sayang, forever for you".`;
+
+            document.getElementById("output").textContent = template;
+            document.getElementById("copyButton").style.display = "inline-block";
+        }
+
+        function copyToClipboard() {
+            let text = document.getElementById("output").textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Teks berhasil disalin!");
+            }).catch(err => {
+                alert("Gagal menyalin teks");
+            });
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                generateCopypasta();
+            }
+        }
+    </script>
+</body>
+</html>
