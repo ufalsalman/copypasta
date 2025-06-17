@@ -11,8 +11,8 @@
     <input type="text" id="karakter" placeholder="Nama karakter..." onkeypress="handleKeyPress(event)">
     <input type="text" id="seri" placeholder="Dari seri apa...">
     <input type="text" id="rambut" placeholder="Warna rambutnya...">
-    <label><input type="radio" name="gender" value="istri" checked>Istri</label>
-    <label><input type="radio" name="gender" value="suami">Suami</label>
+    <label><input type="radio" name="gender" value="cewe" checked>Istri</label>
+    <label><input type="radio" name="gender" value="cowo">Suami</label>
     <button onclick="generateCopypasta()">Bikin</button>
     <button id="copyButton" onclick="copyToClipboard()" style="display: none;">Salin</button>
     <p id="output"></p>
@@ -34,9 +34,10 @@
                 return;
             }
 
-            let pasangan = gender === "istri" ? "istri" : "suami";
+            let pasangan = gender === "cewe" ? "istri" : "suami";
+            let lawanJenis = gender === "cewe" ? "cewe" : "cowo";
 
-            let template = `Gua kan baru ambil duit tuh dari atm tu kan, lu tau nggak dibelakang gua tadi ada cewe pake jaket hoodie kacamata hitam sama masker hitam gitu. Nah dia ngeliat kartu atm gua gitu kan. "Wah itu ${karakter} dari ${seri} ya?", gua bales "Kamu tau darimana emang?". Dia senyum ke gua "Tahu dong", tiba-tiba dia ngelepas hoodienya, kacamata sama maskernya gitu kan, gua kaget ngeliat rambut ${rambut} dan senyuman khasnya itu. Dia bilang, "Aku ${karakter}, apa pendapatmu tentangku?" gitu kan. Gua bilang lah, "Aku cinta banget sama ${karakter}, itu udah kuanggap sebagai ${pasangan} sendiri" gitu. Dia peluk gua, "Sekarang aku ada disini sayang, forever for you".`;
+            let template = `Gua kan baru ambil duit tuh dari atm tu kan, lu tau nggak dibelakang gua tadi ada ${lawanJenis} pake jaket hoodie kacamata hitam sama masker hitam gitu. Nah dia ngeliat kartu atm gua gitu kan. "Wah itu ${karakter} dari ${seri} ya?", gua bales "Kamu tau darimana emang?". Dia senyum ke gua "Tahu dong", tiba-tiba dia ngelepas hoodienya, kacamata sama maskernya gitu kan, gua kaget ngeliat rambut ${rambut} dan senyuman khasnya itu. Dia bilang, "Aku ${karakter}, apa pendapatmu tentangku?" gitu kan. Gua bilang lah, "Aku cinta banget sama ${karakter}, itu udah kuanggap sebagai ${pasangan} sendiri" gitu. Dia peluk gua, "Sekarang aku ada disini sayang, forever for you".`;
 
             document.getElementById("output").textContent = template;
             document.getElementById("copyButton").style.display = "inline-block";
