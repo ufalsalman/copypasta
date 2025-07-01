@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fanpage bubar generator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>fanpage bubar generator</h1>
+    <input type="number" id="tahun" placeholder="Sudah berapa tahun?" onkeypress="handleKeyPress(event)">
+<input type="text" id="fanpage" placeholder="Nama fanpage...">
+<input type="text" id="owner" placeholder="Nama owner fanpage...">
+<button onclick="generateCopypasta()">Bikin</button>
+<button id="copyButton" onclick="copyToClipboard()" style="display: none;">Salin</button>
+<p id="output"></p>
+<hr>
+<p>balik ke <a href="/">beranda</a></p>
+<hr>
+<p><a href="https://ufal.my.id">orang</a> yang ngurus situs ini</p>
+
+<script>
+    function generateCopypasta() {
+        let tahun = document.getElementById("tahun").value.trim();
+        let fanpage = document.getElementById("fanpage").value.trim();
+        let owner = document.getElementById("owner").value.trim();
+
+        if (!tahun || !fanpage || !owner) {
+            document.getElementById("output").textContent = "Lengkapi semua isian dulu!";
+            document.getElementById("copyButton").style.display = "none";
+            return;
+        }
+
+        let template = `[𝗣𝗘𝗡𝗚𝗨𝗠𝗨𝗠𝗔𝗡 𝗣𝗘𝗡𝗧𝗜𝗡𝗚]
+
+Sudah ${tahun} Tahun ${fanpage} berjalan. Tawa Canda yang Lucu dan Menyenangkan, Kesedihan yang bercampur Ironi, Kemarahan yang menimbulkan Kebencian.
+Berbagai emosi diluapkan untuk membangun ${fanpage} hingga sekarang. Terdengar Playing Victim dan itu tergantung pada pandangan kalian.
+Jika kalian benci maka bencilah, Kami Tidak perlu dibela, Tidak perlu dipuji.
+
+Maka dari itu, ${fanpage}
+𝗗𝗶𝗻𝘆𝗮𝘁𝗮𝗸𝗮𝗻, 
+[𝗧𝗨𝗧𝗨𝗣]
+
+Kami tidak akan membuat Postingan lagi, Grup akan tetap berjalan. Namun, FP ${fanpage} tidak akan dihapus dan akan menjadi Buku Kenangan FB untuk sebagian orang yang punya kenangan dengan ${fanpage}.
+Terima Kasih sudah jadi bagian Pengikut ${fanpage}.
+
+Hormat Saya, ̶O̶w̶n̶e̶r ${owner}`;
+
+document.getElementById("output").innerText = template;
+        document.getElementById("copyButton").style.display = "inline-block";
+    }
+
+    function copyToClipboard() {
+        let text = document.getElementById("output").textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Teks berhasil disalin!");
+        }).catch(err => {
+            alert("Gagal menyalin teks");
+        });
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            generateCopypasta();
+        }
+    }
+</script>
+
+</body>
+</html>
