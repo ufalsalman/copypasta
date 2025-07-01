@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fokus nikah generator</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>fokus nikah generator</h1>
+    <input type="text" id="nama" placeholder="Masukkan nama..." onkeypress="handleKeyPress(event)">
+<button onclick="generateCopypasta()">Bikin</button>
+<button id="copyButton" onclick="copyToClipboard()" style="display: none;">Salin</button>
+<p id="output"></p>
+<hr>
+<p>balik ke <a href="/">beranda</a></p>
+<hr>
+<p><a href="https://ufal.my.id">orang</a> yang ngurus situs ini</p>
+
+<script>
+    function generateCopypasta() {
+        let nama = document.getElementById("nama").value.trim();
+
+        if (!nama) {
+            document.getElementById("output").textContent = "Lengkapi semua isian dulu!";
+            document.getElementById("copyButton").style.display = "none";
+            return;
+        }
+
+        let template = `Setelah gw pikir matang-matang, emang main game gacha di usia gw yg udah bukan remaja lagi itu gak baik, dan gw udah harus serius menentukan pilihan hidup.
+Banyak yg nyuruh gw berhenti.
+Makasih buat kenangannya, gw udah memutuskan buat stop main game gacha dan fokus mencari nafkah untuk nikahin ${nama} 💍🥰`;
+
+document.getElementById("output").innerText = template;
+        document.getElementById("copyButton").style.display = "inline-block";
+    }
+
+    function copyToClipboard() {
+        let text = document.getElementById("output").textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            alert("Teks berhasil disalin!");
+        }).catch(err => {
+            alert("Gagal menyalin teks");
+        });
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            generateCopypasta();
+        }
+    }
+</script>
+
+</body>
+</html>
